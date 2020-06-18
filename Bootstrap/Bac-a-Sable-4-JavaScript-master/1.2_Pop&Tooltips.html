@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bac à sable 2 La Grille</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!-- Le CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <!-- popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <!-- Le JavaScript de Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <h1 class="text-center mt-5 display-2">JavaScript</h1>
+    <h2 class="text-center mt-0 display-4">Pop & Tooltips</h2>
+    <br>
+    <br>
+    <div class="container d-flex flex-wrap justify-content-center">
+        <a href="1_Carousel.html" class="btn btn-danger m-2">Carousel</a>
+        <a href="1.1_Collapse.html" class="btn btn-danger m-2">Collapse</a>
+        <a href="1.2_Pop&Tooltips.html" class="btn btn-danger m-2">Pop & Tooltips</a>
+        <a href="1.3_Modals.html" class="btn btn-danger m-2">Modals</a>
+        <a href="1.4_Scroll.html" class="btn btn-danger m-2">Scroll</a>
+
+    </div>
+    <br>
+    <br>
+    <hr>
+    <div class="container">
+
+
+
+        <!-- POPOVER -->
+        <button class="btn btn-danger" data-toggle="popover" data-placement="top" data-content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, inventore.
+        Toggle popover" data-trigger="focus">
+            Toggle Popover
+        </button>
+
+        <!-- Tooltips -->
+        <button id="hello" class="btn btn-primary" data-toggle="tooltip" data-placement="top" data-html="true"
+            title="<H1>Voici du Contenu</H1>">Tooltip</button>
+
+
+
+
+
+
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <script>
+            // initialiser popover
+            $('[data-toggle="popover"]').popover();
+            // initialiser tooltip
+            $('[data-toggle="tooltip"]').tooltip();
+    </script>
+</body>
+
+</html>

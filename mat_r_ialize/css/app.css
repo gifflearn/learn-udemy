@@ -1,0 +1,16 @@
+body{
+    background-color: aqua;
+    color:white;
+    text-align: center;
+}
+*{
+    box-sizing:border-box;
+}
+img{
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+}
+div{
+    height: 200px;
+}

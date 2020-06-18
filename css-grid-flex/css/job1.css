@@ -1,0 +1,28 @@
+#job1 {
+    display: grid;
+    margin:auto;
+    width: 600px;
+    grid-template-columns: repeat(3,1fr);
+    font-family: arial;
+	font-size: 16px;
+	border: 1px solid #ccc;
+
+}
+
+#job1 div[class] {
+   text-align: center;
+   padding: 10px;
+}
+.titre {
+    background-color:#ccc;
+    font-weight:bolder;
+    border-bottom: 1px solid #999;
+}
+.nom,.prenom,.age {
+    background-color: #eee;
+	border-bottom: 1px solid #999;
+}
+.nom:hover,.prenom:hover,.age:hover {
+	background-color: #f90;
+}
+

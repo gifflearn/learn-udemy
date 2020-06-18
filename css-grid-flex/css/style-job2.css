@@ -1,0 +1,54 @@
+body {
+	margin: 0;
+	padding:0;
+}
+#site {
+	height: 100vh;
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	grid-template-rows: 1fr 1fr 4fr 1fr;
+	grid-template-areas:
+		"header header"
+		"nav nav"
+		"article aside"
+		"footer footer";
+}
+header {
+	background-color: #0065a7;
+	grid-area: header;
+}
+nav {
+	background-color: #124b78;
+	grid-area: nav;
+}
+article {
+	background-color: #16a2c5;
+	grid-area: article;
+}
+aside {
+	background-color: #5275ad;
+	grid-area: aside;
+}
+footer {
+	background-color: #7cccce;
+	grid-area: footer;
+}
+.generale {
+	text-align: center;
+	color: #fff;
+	font-family: arial;
+	font-size: 18px;
+}
+
+@media screen and (max-width: 959px) {
+#site {
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr 4fr 1fr 1fr 1fr;
+	grid-template-areas:
+		"header"
+		"article"
+		"nav"
+		"aside"
+		"footer";
+}	
+}

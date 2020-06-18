@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+</head>
+<body>
+    <script>
+
+    // 1 - l'objet basique    
+    //    var animal = {
+    //        cri: '???',
+    //        crier : function() {
+    //            return this.cri;
+    //        },
+    //        fourure : {
+    //            couleur: 'blanc',
+    //            longueur:'court'
+    //        }
+    //    }
+
+    // 2 - creation d'une "classe" à l'aide d'un construteur
+    // var animal = function(nom) {
+    //     this.nom = nom;
+    //     this.pattes= 4;
+    //     this.cri='????';
+    //     this.crier = function(){
+    //         return 'le cri : ' + this.cri;
+    //     }
+    // }
+    // var poney = new animal('Rainbow Dash');
+    // poney.pattes = 3;
+    // var chat = new animal('Croquette');
+
+    // 3 - Heritage prototytal
+    // var animal = function(nom) {
+    //     this.nom=nom;
+    // }
+    // animal.prototype.pattes = 4;
+    // animal.prototype.cri= '???';
+    // animal.prototype.crier = function() {
+    //     return this.cri;
+    // }
+    // animal.prototype.fourure = {
+    //     couleur : 'blan',
+    //     longueur : 'courte'
+    // }
+    // var poney = new animal('Rainbow Dash');
+    // var chat = new animal('Croquette');
+
+    // 4 - l'héritage mulitiple 
+       var animal = {
+           cri: '???',
+           crier : function() {
+               return this.cri;
+           },
+           fourure : {
+               couleur: 'blanc',
+               longueur:'court'
+           }
+       }
+
+       var poney = Object.create(animal);
+       poney.marcher = function() {
+           return 'cataclop';
+       }
+       var chat = Object.create(animal);
+       chat.marcher = function(){
+           return 'ronron';
+       }
+        var roger = Object.create(poney);
+        roger.nom = 'Roger';
+
+
+
+    </script>
+</body>
+</html>

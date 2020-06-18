@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bac à sable 2 La Grille</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Le CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <!-- popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <!-- Le JavaScript de Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <h1 class="text-center mt-5 display-2">La Grille</h1>
+    <h2 class="text-center mt-0 display-4">Le système de grille</h2>
+    <br>
+    <br>
+    <div class="container d-flex flex-wrap justify-content-center">
+        <a href="1_Grille.html" class="btn btn-warning m-2">La Grille</a>
+        <a href="1.1_Alignement.html" class="btn btn-warning m-2">Alignement</a>
+        <a href="1.2_Flexbox.html" class="btn btn-warning m-2">Flexbox</a>
+        <a href="1.3_Marge,Wrap,Ordre.html" class="btn btn-warning m-2">Marge, Wrap et Ordre</a>
+    </div>
+    <br>
+    <br>
+    <hr>
+    <div class="container w-75"> 
+        <!-- ou container-fluid -->
+
+
+
+
+        <h2>Grille basique responsive</h2>
+        <div class="row ">
+            <div class="col-sm-6 col-md-8 col-lg-9 col-xl-10" style="border:1px solid #333">
+                <ul>
+                    <li>6 colonnes avec petits écrans | 576px - 768px |</li>
+                    <li>8 colonnes Medium | 768px - 992px |</li>
+                    <li>9 colonnes grands écrans | 992px - 1200px |</li>
+                    <li>10 colonnes écran extra larges > 1200px</li>
+                </ul>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2" style="border:1px solid #333">
+                <ul>
+                    <li>6 colonnes small</li>
+                    <li>4 colonnes medium</li>
+                    <li>3 colonnes large</li>
+                    <li>2 colonnes xlarge</li>
+                </ul>
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+        <h2>Largeurs égales</h2>
+        <div class="row">
+            <div class="col" style="border:1px solid #333">largeur égale</div>
+            <div class="col" style="border:1px solid #333">largeur égale</div>
+            <div class="col" style="border:1px solid #333">largeur égale</div>
+            <div class="col" style="border:1px solid #333">largeur égale</div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+
+        <h2>Colonnes automatiques</h2>
+        <div class="row">
+            <div class="col" style="border:1px solid #333">Auto Layout</div>
+            <div class="col-6" style="border:1px solid #333">Auto Layout</div>
+            <div class="col-4" style="border:1px solid #333">Auto Layout</div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+        <h2>Largeurs égales puis se stackent en small</h2>
+        <div class="row">
+            <div class="col-sm" style="border:1px solid #333">largeur égale puis stack</div>
+            <div class="col-sm" style="border:1px solid #333">largeur égale puis stack</div>
+            <div class="col-sm" style="border:1px solid #333">largeur égale puis stack</div>
+        </div>
+
+
+        <br>
+        <br>
+        <br>
+
+        <h2>Mettons de l'odre</h2>
+        <div class="row">
+            <div class="col order-3" style="border:1px solid #333">
+                Premier
+            </div>
+            <div class="col order-2" style="border:1px solid #333">
+                Second
+            </div>
+            <div class="col order-1" style="border:1px solid #333">
+                Troisième
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+
+        <h2>Décalage</h2>
+        <div class="row">
+            <!-- Décalage de 3 col à partir de md -->
+            <div class="col-md-6 offset-md-3" style="border:1px solid #333">.col-md-6 .offset-md-3</div>
+        </div>
+        <div class="row">
+            <!-- Seconde Div décalé de 4 cols -->
+            <div class="col-md-4" style="border:1px solid #333">.col-md-4</div>
+            <div class="col-md-4 offset-md-4" style="border:1px solid #333">.col-md-4 .offset-md-4</div>
+        </div>
+
+        <div class="row">
+            <!-- Deux décalages de 3 -->
+            <div class="col-md-3 offset-md-3" style="border:1px solid #333">.col-md-3 .offset-md-3</div>
+            <div class="col-md-3 offset-md-3" style="border:1px solid #333">.col-md-3 .offset-md-3</div>
+        </div>
+
+
+        <br>
+        <br>
+        <br>
+
+        <h2>Les unes dans les autres</h2>
+        <div class="row">
+            <div class="col-sm-9" style="border:1px solid blue">
+                Level 1: .col-sm-9
+                <div class="row">
+                    <div class="col-8 col-sm-6" style="border:1px solid red">
+                        Level 2: .col-8 .col-sm-6
+                    </div>
+                    <div class="col-4 col-sm-6" style="border:1px solid red">
+                        Level 2: .col-4 .col-sm-6
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+</body>
+
+</html>

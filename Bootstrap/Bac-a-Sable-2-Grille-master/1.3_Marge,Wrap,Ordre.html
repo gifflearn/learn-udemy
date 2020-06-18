@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bac à sable 2 La Grille</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Le CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <!-- popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <!-- Le JavaScript de Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <style>
+        .row-hl {
+            background: #f4f4f4;
+            height: 150px;
+        }
+
+        .item-hl {
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="text-center mt-5 display-2">La Grille</h1>
+    <h2 class="text-center mt-0 display-4">Marge, Wrap et Ordre</h2>
+    <br>
+    <br>
+    <div class="container d-flex flex-wrap justify-content-center">
+        <a href="1_Grille.html" class="btn btn-warning m-2">La Grille</a>
+        <a href="1.1_Alignement.html" class="btn btn-warning m-2">Alignement</a>
+        <a href="1.2_Flexbox.html" class="btn btn-warning m-2">Flexbox</a>
+        <a href="1.3_Marge,Wrap,Ordre.html" class="btn btn-warning m-2">Marge, Wrap et Ordre</a>
+    </div>
+    <br>
+    <br>
+    <hr>
+    <div class="container w-75">
+
+
+        <!-- MR-AUTO -->
+        <div class="d-flex row-hl">
+            <div class="mr-auto p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+        </div>
+
+        <br>
+        <br>
+
+        <!-- ML-AUTO -->
+        <div class="d-flex row-hl">
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="ml-auto p-2 item-hl">Flex item</div>
+        </div>
+
+        <br>
+        <br>
+
+        <!-- MB-AUTO -->
+        <div class="d-flex flex-column row-hl">
+            <div class="mb-auto p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+        </div>
+
+        <br>
+        <br>
+
+        <!-- MT-AUTO -->
+        <div class="d-flex flex-column row-hl">
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="mt-auto p-2 item-hl">Flex item</div>
+        </div>
+
+        <br>
+        <br>
+
+        <!-- NO WRAP -->
+        <div class="d-flex flex-nowrap row-hl">
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+
+        </div>
+
+        <br>
+        <br>
+
+        <!-- WRAP -->
+        <div class="d-flex flex-wrap row-hl">
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+            <div class="p-2 item-hl">Flex item</div>
+        </div>
+
+        <br>
+        <br>
+
+        <!-- ORDRE -->
+        <div class="d-flex row-hl">
+            <div class="order-3 p-2 item-hl">First flex item</div>
+            <div class=" p-2 item-hl">Second flex item</div>
+            <div class=" p-2 item-hl">Third flex item</div>
+        </div>
+
+
+
+    </div>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</body>
+
+</html>

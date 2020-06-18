@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap iolpme</title>
+    <!--  Police de caratère -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet"> 
+    <!-- le style bootstrap  -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Font Awsome  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- <script src="https://kit.fontawesome.com/150cf670a4.js" crossorigin="anonymous"></script> -->
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+        <!-- Navigation -->
+    
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" id="main-nav">
+            <div class="container">
+                <a href="index.html" class="navbar-brand">AppartFacile</a>
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item mr-1">
+                            <a href="#top" class="nav-link">Accueil</a>
+                        </li>
+                        <li class="nav-item mr-1">
+                            <a href="#info" class="nav-link">Concept</a>
+                        </li>
+                        <li class="nav-item mr-1">
+                            <a href="#client" class="nav-link">Nos clients</a>
+                        </li>
+                        <li class="nav-item mr-1">
+                            <a href="#newsletter" class="nav-link">Newsletter</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    <!-- Header, accueil grande image -->
+    <header class="text-center" id="top">
+        <div class="text-intro">
+            <div class="preTxt text-white font-italic">
+                Trouvez l'appartement de vos rêves
+            </div>
+            <h1>
+                Sur LogisNeuf
+            </h1>
+            <a href="#" class="btn btn-primary mt-3">En savoir Plus</a>
+        </div>
+    </header>
+
+<!--  Section Info -->
+
+<section class="py-5" id="info">
+    <div class="container">
+        <div class="row">
+            <div id="txtLaptop" class="col-md-6 align-self-center">
+                    <h3>Lorem ipsum dolor</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure quia accusantium blanditiis obcaecati, 
+                        ea saepe perferendis! Officia, fugiat officiis iure sit tempora obcaecati.</p>
+                    <a href="#" class="btn btn-outline-danger">Découvrir</a>
+            </div>
+            <div class="col-md-6">
+                <img src="img/laptop.png" alt="ordinateur" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section 3 icones -->
+
+<section id="home-icons">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4 text-center">
+                <i class="fas fa-cog fa-3x mb-2"></i>
+                <h3>Outils Performants</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, ducimus laboriosam, 
+                    molestias explicabo perferendis natus quae non impedit sed itaque iure quibusdam. Possimus, ad repudiandae?</p>
+            </div>
+            <div class="col-md-4 mb-4 text-center">
+                <i class="fas fa-cloud fa-3x mb-2"></i>
+                <h3>Données Utiles</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, ducimus laboriosam, 
+                    molestias explicabo perferendis natus quae non impedit sed itaque iure quibusdam. Possimus, ad repudiandae?</p>
+            </div>
+            <div class="col-md-4 mb-4 text-center">
+                <i class="fas fa-cart-plus fa-3x mb-2"></i>
+                <h3>Gagnez de l'argent</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, ducimus laboriosam, 
+                    molestias explicabo perferendis natus quae non impedit sed itaque iure quibusdam. Possimus, ad repudiandae?</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to action -->
+
+<section class="py-5" id="start">
+    <div class="container py-5">
+        <h2 class="pb-3">Etes vous prêt à commencer ?</h2>
+        <p class="d-none d-md-block">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, sit? Asperiores est perferendis eius ipsa!</p>
+        <a href="#" class="btn btn-primary">Démarrez maintenant</a>
+    </div>
+</section>
+
+<!-- Clients -->
+<section class="my-5 text-center" id="client">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2 class="pb-3">Nos clients</h2>
+                <p class="lead pb-5">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium deserunt minus praesentium vero, sapiente impedit.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="img/visage1.jpg" alt="visage" class="img-fluid rounded-circle w-50 mb-3">
+                        <h3>Tom</h3>
+                        <h5 class="text-muted">Développeur</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione beatae aliquid laudantium nihil provident laboriosam itaque, tempora dignissimos sint non.</p>
+                        <div class="d-flex justify-content-center">
+                            <div class="p-4">
+                                <a href="http://facebook.com">
+                                <i class="fab fa-facebook"></i>
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="http://twitter.com">
+                                <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="http://instagram.com">
+                                <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="img/visage2.png" alt="visage" class="img-fluid rounded-circle w-50 mb-3">
+                        <h3>Nick</h3>
+                        <h5 class="text-muted">Marketing</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione beatae aliquid laudantium nihil provident laboriosam itaque, tempora dignissimos sint non.</p>
+                        <div class="d-flex justify-content-center">
+                            <div class="p-4">
+                                <a href="http://facebook.com">
+                                <i class="fab fa-facebook"></i>
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="http://twitter.com">
+                                <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="http://instagram.com">
+                                <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="img/visage3.png" alt="visage" class="img-fluid rounded-circle w-50 mb-3">
+                        <h3>John</h3>
+                        <h5 class="text-muted">Développeur</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione beatae aliquid laudantium nihil provident laboriosam itaque, tempora dignissimos sint non.</p>
+                        <div class="d-flex justify-content-center">
+                            <div class="p-4">
+                                <a href="http://facebook.com">
+                                <i class="fab fa-facebook"></i>
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="http://twitter.com">
+                                <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="http://instagram.com">
+                                <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="img/visage4.png" alt="visage" class="img-fluid rounded-circle w-50 mb-3">
+                        <h3>Suzan</h3>
+                        <h5 class="text-muted">Web Design</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione beatae aliquid laudantium nihil provident laboriosam itaque, tempora dignissimos sint non.</p>
+                        <div class="d-flex justify-content-center">
+                            <div class="p-4">
+                                <a href="http://facebook.com">
+                                <i class="fab fa-facebook"></i>
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="http://twitter.com">
+                                <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="http://instagram.com">
+                                <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter -->
+<section class="p-5 bg-dark text-white text-center" id="newsletter">
+    <div class="container">
+        <div class="row">
+            <h3>Abonnez vous à la Newsletter</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium itaque sed culpa consectetur fugit quo nam suscipit amet! Accusantium, tempore.</p>
+            <form class="form-inline justify-content-center">
+                <input type="text" class="form-control mb-2 mr-2" placeholder="Nom">
+                <input type="text" class="form-control mb-2 mr-2" placeholder="Email">
+                <button class="btn btn-primary mb-2">Soumettre</button>
+            </form>
+        </div>
+    </div>
+
+</section>
+
+<!-- Footer -->
+<footer class="text-center p-4" id="main-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p>Copyright &copy;</p>
+                <span id="year"></span> AppartFacile
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+
+
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script>
+    // generer date
+    $('#year').text(new Date().getFullYear());
+    // Schroll spy
+    $('body').scrollspy({target: '#main-nav'})
+</script>
+
+
+</body>
+</html>

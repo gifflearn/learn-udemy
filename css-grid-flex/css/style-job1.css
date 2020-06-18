@@ -1,0 +1,25 @@
+#tableau {
+	width: 300px;
+	margin: auto;
+	font-family: arial;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	display: grid;
+	grid-template-columns: repeat(3,1fr);
+}
+#tableau div[class] {
+	text-align: center;
+	padding: 10px;
+}
+.entete {
+	background-color: #ccc;
+	font-weight: bold;
+	border-bottom: 1px solid #999;
+}
+.donnee {
+	background-color: #eee;
+	border-bottom: 1px solid #999;
+}
+.donnee:hover {
+	background-color: #f90;
+}
