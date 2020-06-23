@@ -1,0 +1,21 @@
+body {
+    height: 100vh;
+}
+
+.container {
+    width: 800px;
+    margin: auto;
+    background: blueviolet;
+}
+
+.box {
+    height: 200px;
+    width: 80px;
+}
+
+.box1 {
+    background: crimson;
+}
+.box2 {
+    background: turquoise;
+}

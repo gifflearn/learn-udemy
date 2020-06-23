@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #262626;
+    height: 100vh;
+}
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #f1f1f1;
+    font-size: 60px;
+    font-family: sans-serif;
+    margin-bottom: 15px;
+}
+.vwMoitie {
+    height: 200px;
+    width: 50vw;
+    background: crimson;
+}
+.percParent {
+    width: 500px;
+}
+
+.percMoitie {
+    height: 200px;
+    width: 50%;
+    background: crimson;
+}
+
+.pixelMoitie {
+    height: 200px;
+    width: 200px;
+    background: crimson;
+}
+.vhUnit {
+    height: 25%;
+    width: 50%;
+    background: crimson;
+}
+.txt {
+    color: #f1f1f1;
+    font-family: sans-serif;
+}
+/* txt px */
+.titreEnPx {
+    font-size: 70px;
+}
+/* txt Em */
+.parentEm{
+    font-size: 40px;
+}
+.titreEnEM {
+    font-size: 1em;
+}
+.titreEnREM {
+    font-size: 1rem;
+}

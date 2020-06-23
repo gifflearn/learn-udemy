@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #333;
+    height: 100vh;
+}
+
+.box {
+  background: #cd5c5c;
+  width: 300px;
+  height: 300px;
+  margin: 30px;
+}
+
