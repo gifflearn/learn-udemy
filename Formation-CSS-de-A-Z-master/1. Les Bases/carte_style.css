@@ -1,0 +1,22 @@
+.maCarte {
+    background : #333;
+    color: #f1f1f1;
+    margin: 200px auto;
+    width: 400px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.monImg {
+    width: 100% ;
+    height: auto; 
+    }
+
+.maCarte h2 {
+    margin: 10px 0 10px 5px;
+}
+
+.maCarte p {
+    margin: 5px;
+}
+
