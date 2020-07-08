@@ -10,12 +10,28 @@ body {
 }
 .posRel {
     background: crimson;
+    position: relatif;
+    top:400px;
+    left:50px;
+}
+.posAbs1 {
+    background:burlywood;
+    position: absolute;
+    top:400px;
+    left:50px;
+}
+.parent2 {
+    margin: 20px;
+    width: 600px;
+    height: 600px;
+    background:  rgb(122, 190, 221);
+    position:relative;
 }
 .parent {
     margin: 20px;
     width: 400px;
     height: 400px;
-    background: salmon;
+    background:salmon;
 }
 
 .element {

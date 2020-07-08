@@ -1,0 +1,15 @@
+/* *, ::before,::after {
+    box-sizing: border-box;
+} */
+
+p {
+    font-size: 70px ;
+}
+
+.txt1.txt2 {
+    color: violet;
+}
+
+.parent .enfant {
+    color: red;
+}
