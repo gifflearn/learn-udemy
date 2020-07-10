@@ -17,12 +17,12 @@ export class HomeComponent implements OnInit {
   properties = [];
 
   ngOnInit() {
-    this.propertiesService.getProperties().then( //executé si le promise est en resolve .
+    this.propertiesService.getProperties().then( //le then executé si le promise est en resolve .
       (data: any) => {                                // Celui-ci passe alors en parametre la valeur du return ( ici: properties)
         console.log(data);
         this.properties = data;
       }
-    ).catch(                                    //executé si le promise est en reject.
+    ).catch(                                    //catch executé si le promise est en reject.
       (error) => {                              // Celui-ci passe alors en parametre la valeur du return ( ici: Prperties does not ...)
         console.log(error);
       }

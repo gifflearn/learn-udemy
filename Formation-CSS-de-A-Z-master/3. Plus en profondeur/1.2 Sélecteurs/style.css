@@ -6,10 +6,57 @@ p {
     font-size: 70px ;
 }
 
-.txt1.txt2 {
+.txt1.txt2 { /* txt1 ET txt2 */
     color: violet;
 }
 
-.parent .enfant {
+.parent .enfant { /* enfant descedant pas necessairement direct de parent */
     color: red;
+}
+
+#monid {
+    color:blue;
+}
+
+.action1 > .action2 {  /* action2 fils directe de  action1 */ 
+    background: pink;
+}
+
+div + p { /* premier element p qui suit un div de même niveau */
+    background: black;
+}
+
+.titre1 ~ .titre2 { /* tous les titre2 qui suivent un titre1 de même niveau */
+
+}
+
+[title="Hello"] { /* possede l'attibut title [avec la valeur Hello]  */
+    background: #000;
+}
+
+input:checked { /* un etat . Pseudo class */
+    display: block ;
+    width:100px;
+    height: 100px;
+}
+
+.txtFirst::first-letter { /* pseudo class */
+    font-size: 200px;
+}
+
+.item:first-of-type { /* premier element avec la class item */
+background: red;
+}
+
+.item:last-of-type { /* dernier element avec la class item */
+    background:green;
+    }
+
+.item:nth-child(3) { /* troisiéme enfant avec la class item */
+    background:cyan;
+}
+
+.item:not(:nth-child(5)) { /* tous les elements avec la class item sauf le 5ieme enfant */
+    font-style: italic;
+    letter-spacing: 5px;
 }

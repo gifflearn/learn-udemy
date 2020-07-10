@@ -50,9 +50,9 @@ body {
 .parentEm{
     font-size: 40px;
 }
-.titreEnEM {
+.titreEnEM { /* fait reference à la taille du parent ( ou de html par defaut font-size = 16px ) */
     font-size: 1em;
 }
-.titreEnREM {
-    font-size: 1rem;
+.titreEnREM { /* fait reference à la taille de html font-size = 16px par default ou à la font-size defini pour l'élément html */
+    font-size: 1rem; /* 2rem = 32px, 3rem = 48px*/
 }
