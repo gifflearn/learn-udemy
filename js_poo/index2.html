@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+</head>
+<body>
+    <script>
+
+    // function greeting(name) {
+    //         alert('Hello ' + name);
+    // }
+
+    // function preocessUserInput(callback) {
+    //         var name = prompt('Please enter your name');
+    //         callback(name);
+    // }
+
+    // preocessUserInput(greeting);
+
+    
+    // Etape à oublier
+    // function preocessUserInput() {
+    //         var name = prompt('Please enter your name');
+    //         function greeting() {
+    //             alert('Hello ' + name);
+    //         }
+    //         return greeting;
+    // }
+
+    // let a =preocessUserInput();
+    // a();
+
+    // function preocessUserInput() {
+    //         var name = prompt('Please enter your name');
+    //         return function () {
+    //             alert('Hello ' + name);
+    //         }
+
+    // }
+
+    // let a =preocessUserInput();
+    // a();
+
+    function preocessUserInput() {
+            var name = prompt('Please enter your name');
+            return  () => {
+                alert('Hello ' + name);
+            }
+    }
+
+    let a =preocessUserInput();
+    a();
+
+
+
+    </script>
+</body>
+</html>

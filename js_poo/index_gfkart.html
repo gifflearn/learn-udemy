@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+</head>
+<body>
+    <script>
+
+    // https://jsonplaceholder.typicode.com/users
+
+    //  https://jsonplaceholder.typicode.com/comments?userId={ID}
+
+        var get = function (url, success) {
+            var xhr = new window.XMLHttpRequest()
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    success(xhr.responseText)
+                }
+            }
+            xhr.open('GET',url,true)
+            xhr.send()
+        }
+
+        var getPosts = function () {
+            get('https://jsonplaceholder.typicode.com/users', function (response) {
+              console.log(response) 
+            })
+        }
+
+        console.log(getPosts())
+
+    </script>
+</body>
+</html>
