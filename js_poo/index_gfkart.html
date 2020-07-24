@@ -11,25 +11,52 @@
 
     //  https://jsonplaceholder.typicode.com/comments?userId={ID}
 
-        var get = function (url, success) {
-            var xhr = new window.XMLHttpRequest()
+        var get = function (url) {
+            return new Promise(function(resolve,reject) {
+                var xhr = new window.XMLHttpRequest()
 
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4) {
-                    success(xhr.responseText)
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            resolve(xhr.responseText)
+                        } else {
+                            reject(xhr)
+                        }
+                    }
                 }
-            }
-            xhr.open('GET',url,true)
-            xhr.send()
+                xhr.open('GET',url,true)
+                xhr.send()
+            })
+            
+            
+        }
+
+        // get('https://jsonplaceholder.typicode.com/users').then(function (response) {
+        //     console.log(response)
+        // }).catch(function(error) {
+        //     console.log(error)
+        // })
+
+        var catchError = function(e) {
+            console.error('Erreur Ajax',e)
         }
 
         var getPosts = function () {
-            get('https://jsonplaceholder.typicode.com/users', function (response) {
-              console.log(response) 
-            })
+                return get('https://jsonplaceholder.typicode.com/users').then( function (response) {
+                    var users = JSON.parse(response)
+                    return get('https://jsonplaceholder.typicode.com/comments?userId=' +users[0].id)
+                }).then( function(response) {
+                    var posts = JSON.parse(response)
+                    return posts
+                })
         }
 
-        console.log(getPosts())
+         getPosts().then(function (posts) {
+            console.log(posts[0])
+            }).catch(catchError)
+            .then( function () {
+                console.log('Fin des requetes : toujours executé !')
+            })
 
     </script>
 </body>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+</head>
+<body>
+    <script>
+
+    // https://jsonplaceholder.typicode.com/users
+
+    //  https://jsonplaceholder.typicode.com/comments?userId={ID}
+
+        var get = function (url, success, error) {
+            var xhr = new window.XMLHttpRequest()
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        success(xhr.responseText)
+                    } else {
+                        error(xhr)
+                    }
+                }
+            }
+            xhr.open('GET',url,true)
+            xhr.send()
+        }
+
+        var getPosts = function (success,error) {
+            //
+            get('https://jsonplaceholder.typicode.com/users', function (response) {
+                    var users = JSON.parse(response)
+                    // console.log(users[0])
+                    get('https://jsonplaceholder.typicode.com/comments?userId=' +users[0].id,function(response){
+                        var posts = JSON.parse(response)
+                        // console.log(posts)
+                        success(posts)
+                    }, function(error) {
+                        // console.error('Erreur Ajax users ',error)
+                        error('Erreur Ajax ',error)
+                    }); 
+            }, function(error) {
+                //console.error('Erreur Ajax posts',error)
+                error('Erreur Ajax ',error)
+            })
+        }
+
+        getPosts(function (reponse) {
+            console.log('Le premier article',reponse[0]);
+        }, function (error) {
+            console.log(error)
+        })
+
+    </script>
+</body>
+</html>
