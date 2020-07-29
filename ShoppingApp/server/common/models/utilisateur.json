@@ -6,22 +6,22 @@
     "validateUpsert": true
   },
   "properties": {
-    "nom": {
+    "username": {
+      "type": "string"
+    },
+    "contact": {
       "type": "string",
       "required": true
     },
-    "age": {
-      "type": "number"
+    "avatar": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
     }
   },
   "validations": [],
-  "relations": {
-    "articles": {
-      "type": "hasMany",
-      "model": "Article",
-      "foreignKey": ""
-    }
-  },
+  "relations": {},
   "acls": [],
   "methods": {}
 }

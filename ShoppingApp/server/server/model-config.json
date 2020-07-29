@@ -35,16 +35,12 @@
     "dataSource": "db",
     "public": false
   },
-  "Utilisateur": {
-    "dataSource": "MyDatasource",
-    "public": true
-  },
-  "Article": {
-    "dataSource": "MyDatasource",
-    "public": true
-  },
   "Container": {
     "dataSource": "local-storage",
+    "public": true
+  },
+  "Utilisateur": {
+    "dataSource": "MyDatasource",
     "public": true
   }
 }

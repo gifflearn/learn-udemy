@@ -1008,6 +1008,11 @@
   dependencies:
     "@types/cordova" latest
 
+"@ionic-native/facebook@4":
+  version "4.20.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/facebook/-/facebook-4.20.0.tgz#fe9be60a2ab4fd5d89578703387fbc6322a9cf95"
+  integrity sha512-86U68xPBmVHMkYcM5iWRXbTHMGq719ZdTURO5aHU6shnla/ZFY5N+7woqq7j83HBoCZnSg2zu0QZFrT+3Ad/zQ==
+
 "@ionic-native/splash-screen@^5.0.0":
   version "5.27.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/splash-screen/-/splash-screen-5.27.0.tgz#d2aa69808e9eff3b4bc79b95c58864a5539a535e"
@@ -2674,6 +2679,11 @@ copy-webpack-plugin@6.0.3:
     schema-utils "^2.7.0"
     serialize-javascript "^4.0.0"
     webpack-sources "^1.4.3"
+
+cordova-plugin-facebook4@^6.4.0:
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-facebook4/-/cordova-plugin-facebook4-6.4.0.tgz#32917a6880b78cb6f8b17431d6ad4ee177bf83d6"
+  integrity sha512-uonmPVPR5glmJfQcMJeiMtqflJYTChrcSNouZDXWjWZkObq4lCOZzOL2cC6FBeyhj+1zJE+pFh+2WZL9wIlHIg==
 
 core-js-compat@^3.6.2:
   version "3.6.5"
