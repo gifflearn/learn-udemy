@@ -1,3 +1,58 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane contentId="main">
+    <!--  the side menu  -->
+    <ion-menu contentId="main">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-item-divider color="primary">Categories</ion-item-divider>
+          <ion-list>
+            <ion-item>
+              <ion-icon name="shirt-outline" slot="start"></ion-icon>
+              <div class="my-container-label">
+                <ion-label class="my-container-title">Vetements</ion-label>
+                <ion-label class="my-container-desc">Description</ion-label>
+              </div>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="car-outline" slot="start"></ion-icon>
+              <div class="my-container-label">
+                <ion-label class="my-container-title">Voiture</ion-label>
+                <ion-label class="my-container-desc">Description</ion-label>
+              </div>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="game-controller-outline" slot="start"></ion-icon>
+              <div class="my-container-label">
+                <ion-label class="my-container-title">Gaming</ion-label>
+                <ion-label class="my-container-desc">Description</ion-label>
+              </div>
+            </ion-item>
+          </ion-list>
+          <ion-item-divider color="primary">Mon compte</ion-item-divider>
+          <ion-list>
+            <ion-item>
+              <ion-icon name="person-outline" slot="start"></ion-icon>
+              <div class="my-container-label">
+                <ion-label class="my-container-title">Profile</ion-label>
+                <ion-label class="my-container-desc">Bienvenue</ion-label>
+              </div>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="save-outline" slot="start"></ion-icon>
+              <div class="my-container-label">
+                <ion-label class="my-container-title">Mes données</ion-label>
+                <ion-label class="my-container-desc">Description</ion-label>
+              </div>            
+            </ion-item>
+          </ion-list>
+      </ion-content>  
+    </ion-menu>
+  
+    <!-- the main content -->
+    <ion-router-outlet id="main"></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>
