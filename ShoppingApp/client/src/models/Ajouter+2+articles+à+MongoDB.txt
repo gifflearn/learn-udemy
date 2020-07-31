@@ -1,0 +1,40 @@
+{
+    "title": "Jacket",
+    "price": 20,
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur nesciunt, molestias suscipit quo laboriosam ex dignissimos provident perferendis porro exercitationem iure, similique dicta neque vel quibusdam fugit, tempore praesentium delectus!",
+    "category": "Vetements",
+    "pictures": ["5f24268d7f4ba02768cd9efb","5f24268d7f4ba02768cd9efc","5f24268d7f4ba02768cd9efd","5f24268d7f4ba02768cd9efe"],
+    "averageStar": 4,
+    "state": "Disponible",
+    "city": "Londres",
+    "createdAt": 
+1559554985661,
+    "utilisateurId": "5f22c1493ea77721e47af480",
+    "owner": "Jef",
+    "availability" : {
+	"available": true,
+	"type": "Livraison",
+	"feed": 5
+	}
+}
+
+
+{
+    "title": "Maquillage",
+    "price": 15,
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur nesciunt, molestias suscipit quo laboriosam ex dignissimos provident perferendis porro exercitationem iure, similique dicta neque vel quibusdam fugit, tempore praesentium delectus!",
+    "category": "Mode & Accessoires",
+    "pictures": ["5f24288faae50440ccfd4401","5f24288faae50440ccfd4403","5f24288faae50440ccfd4405","5f24288faae50440ccfd4404"],
+    "averageStar": 3,
+    "state": "Disponible",
+    "city": "Kinshasa",
+    "createdAt": 
+1559555279784,
+    "utilisateurId": "5f22c1493ea77721e47af480",
+    "owner": "Jef",
+    "availability" : {
+	"available": true,
+	"type": "En Magasin",
+	"address": "Lorem ipsum dolor sit amet consectetur adipisicing elit"
+	}
+}

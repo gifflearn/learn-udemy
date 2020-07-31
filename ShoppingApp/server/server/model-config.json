@@ -42,5 +42,9 @@
   "Utilisateur": {
     "dataSource": "MyDatasource",
     "public": true
+  },
+  "Article": {
+    "dataSource": "MyDatasource",
+    "public": true
   }
 }

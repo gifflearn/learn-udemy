@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import { environment } from '../../models/environments';
+import { Article } from 'src/models/article-interface';
 
 @Component({
   selector: 'app-home',
@@ -8,20 +9,27 @@ import { environment } from '../../models/environments';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
-  nom: string;
-  description: string;
-
+  articles: Article[];
   constructor(private http: HttpClient) {
-    this.loadArticles();
+    this.loadData();
   }
 
-  loadArticles(): void {
-    const url = `${environment.api_url}/Articles`;
-    console.log('url : ', url );
-    this.http.get(url)
-      .subscribe(articles => console.log('articles ', articles));
-  }
+loadData(): void {
+  const url = `${environment.api_url}/Articles`;
+  console.log('url : ', url );
+  this.http.get(url)
+     .subscribe((data: Article[]) => {
+       console.log('articles ', data);
+       this.articles = data;
+    });
+}
+
+  // loadArticles(): void {
+  //   const url = `${environment.api_url}/Articles`;
+  //   console.log('url : ', url );
+  //   this.http.get(url)
+  //     .subscribe(articles => console.log('articles ', articles));
+  // }
 
   // insertArticle(): void {
   //   const url = `${environment.api_url}/Articles`;
