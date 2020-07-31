@@ -4,6 +4,7 @@ import { Platform, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage } from '@ionic/storage';
+import { categories } from 'src/models/category';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  categories: any[];
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -18,6 +20,7 @@ export class AppComponent {
     private storage: Storage,
     private navCtrl: NavController
   ) {
+    this.categories = categories;
     this.initializeApp();
   }
 
@@ -31,5 +34,15 @@ export class AppComponent {
       }
       this.splashScreen.hide();
     });
+  }
+
+  showCategory(catTitle: string ) {
+    this.navCtrl.navigateForward('/category');
+    console.log('catTitle : ', catTitle);
+  }
+
+  goTo(route: string) {
+    console.log('Route :  ', route);
+    this.navCtrl.navigateForward(`/${route}`);
   }
 }

@@ -7,47 +7,51 @@
           <ion-title>Menu</ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-content>
-        <ion-item-divider color="primary">Categories</ion-item-divider>
-          <ion-list>
-            <ion-item>
-              <ion-icon name="shirt-outline" slot="start"></ion-icon>
-              <div class="my-container-label">
-                <ion-label class="my-container-title">Vetements</ion-label>
-                <ion-label class="my-container-desc">Description</ion-label>
-              </div>
-            </ion-item>
-            <ion-item>
-              <ion-icon name="car-outline" slot="start"></ion-icon>
-              <div class="my-container-label">
-                <ion-label class="my-container-title">Voiture</ion-label>
-                <ion-label class="my-container-desc">Description</ion-label>
-              </div>
-            </ion-item>
-            <ion-item>
-              <ion-icon name="game-controller-outline" slot="start"></ion-icon>
-              <div class="my-container-label">
-                <ion-label class="my-container-title">Gaming</ion-label>
-                <ion-label class="my-container-desc">Description</ion-label>
-              </div>
-            </ion-item>
-          </ion-list>
+      <ion-content>        
+        <ion-list>
+          <ion-item-divider color="primary">Categories</ion-item-divider>  
+            <ion-menu-toggle>
+              <ion-item button (click)="showCategory(cat.title)" *ngFor="let cat of categories">
+                <ion-icon name={{cat.icon}} slot="start"></ion-icon>
+                <div class="my-container-label">
+                  <ion-label class="my-container-title">{{cat.title}}</ion-label>
+                  <ion-label class="my-container-desc">{{ cat.description}}</ion-label>
+                </div>
+              </ion-item>
+            </ion-menu-toggle>
+
           <ion-item-divider color="primary">Mon compte</ion-item-divider>
-          <ion-list>
-            <ion-item>
+
+          <ion-menu-toggle>
+            <ion-item button (click)="goTo('profile')" >
               <ion-icon name="person-outline" slot="start"></ion-icon>
               <div class="my-container-label">
                 <ion-label class="my-container-title">Profile</ion-label>
                 <ion-label class="my-container-desc">Bienvenue</ion-label>
               </div>
             </ion-item>
-            <ion-item>
-              <ion-icon name="save-outline" slot="start"></ion-icon>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle>
+            <ion-item button (click)="goTo('messagerie')">
+              <ion-icon name="mail-outline" slot="start"></ion-icon>
               <div class="my-container-label">
-                <ion-label class="my-container-title">Mes données</ion-label>
-                <ion-label class="my-container-desc">Description</ion-label>
+                <ion-label class="my-container-title">Contact</ion-label>
+                <ion-label class="my-container-desc">Consultez vos messages</ion-label>
               </div>            
-            </ion-item>
+            </ion-item>            
+          </ion-menu-toggle>
+
+          <ion-menu-toggle>
+            <ion-item button (click)="goTo('cart')">
+              <ion-icon name="cart" slot="start"></ion-icon>
+              <div class="my-container-label">
+                <ion-label class="my-container-title">Panier</ion-label>
+                <ion-label class="my-container-desc">Consultez votre panier</ion-label>
+              </div>            
+            </ion-item>            
+          </ion-menu-toggle>
+
           </ion-list>
       </ion-content>  
     </ion-menu>
