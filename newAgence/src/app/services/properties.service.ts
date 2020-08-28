@@ -78,8 +78,21 @@ export class PropertiesService {
   // }
 
   // 3 )Code avec un Subject
- emitProperties() {
+ emitProperties() { // Cette function est à lancer à l'endroit de la subscription ( cf home component ou admin-properties component)
     this.propertiesSubject.next(this.properties);  // Si properties change alors l'info est envoyée
+ }
+
+ getProperties() {
+
+ }
+
+ createProperty(property) {
+   this.properties.push(property);
+ }
+
+ deleteProperty(index) {
+  this.properties.splice(index, 1);
+  this.emitProperties();
  }
 
 }

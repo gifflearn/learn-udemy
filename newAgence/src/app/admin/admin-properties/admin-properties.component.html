@@ -2,19 +2,43 @@
   <div class="row">
     <div class="col-12 d-flex">
       <h2 class="font-weight-light"><i class="fas fa-home"></i> Biens immobiliers</h2>
-      <button class="btn btn-primary ml-auto" type="button" data-toggle="modal" data-target="#propertiesFormModal"><i class="fas fa-plus"></i>Ajouter un bien</button>
+      <button class="btn btn-primary ml-auto" type="button" data-toggle="modal" data-target="#propertiesFormModal" (click)="resetForm()"><i class="fas fa-plus"></i>Ajouter un bien</button>
     </div>
   </div>
   <hr class="mt-1 mb-5 bg-dark">
   <div class="row">
-
+    <div *ngFor="let property of properties;let i = index" class="col-12 shadow-sm p-4 mb-3 bg-light">
+      <div class="d-flex">
+        <h3 class="font-weight-normal">{{property.title}}</h3>
+        <div class="ml-auto">
+          <button class="btn btn-primary m-1" type="button"><i class="fas fa-edit" (click)="onEditProperty(property)"></i></button>
+          <button class="btn btn-danger m-1" type="button" (click)="onDeleteProperty(i)"><i class="fas fa-trash-alt"></i></button>
+        </div>
+      </div>
+      <p>
+        {{property.category}}
+        <span *ngIf="property.surface && property.surface !==''">
+          de {{property.surface}} m²
+        </span>
+        <span *ngIf="property.rooms && property.rooms !==''">
+           , {{ property.rooms}} pièces
+        </span>
+      </p>
+      <p *ngIf="property.price && property.price!==''">{{property.price}} €</p>
+      <p>
+        <span class="text-success" *ngIf="property.sold">Vendu</span>
+        <span class="text-danger" *ngIf="!property.sold">A vendre</span>
+      </p>
   </div>
-</div>
 
-<!-- Modal -->
+    </div>
+  </div>
+
+<!-- Modal Ajout/Edition -->
 <div class="modal fade" id="propertiesFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
+
       <form [formGroup]="propertiesForm" (ngSubmit)="onSubmitPropertiesForm()">
       <!-- <form #propertiesForm="ngForm" (ngSubmit)="onSubmitPropertiesForm(propertiesForm)"> -->
         <div class="modal-header">
@@ -74,11 +98,32 @@
 
 
         </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
           <button class="btn btn-primary" type="submit" [disabled]="propertiesForm.invalid" >Enregister</button>
         </div>
+
       </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal suppression -->
+<div class="modal fade" id="deletePropertyModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Supprimer ce bien ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-danger" (click)="onConfirmDeleteProperty()">Supprimer</button>
+      </div>
     </div>
   </div>
 </div>

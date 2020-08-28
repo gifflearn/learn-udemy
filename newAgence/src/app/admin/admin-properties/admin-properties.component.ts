@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForOf } from '@angular/common';
 import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { PropertiesService } from 'src/app/services/properties.service';
+import { Subscription } from 'rxjs';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-admin-properties',
@@ -10,12 +13,24 @@ import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class AdminPropertiesComponent implements OnInit {
 
   public propertiesForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) { }
+  public propertiesSubscription: Subscription;
+  properties: any[] = [];
+  indexToRemove;
+
+  constructor(private formBuilder: FormBuilder, private propService: PropertiesService) { }
 
 
   ngOnInit() {
     // Formulaire avec la methode reactive
+    // console.log('Ngoninit');
     this.initPropertiesForm();
+    this.propService.propertiesSubject.subscribe(
+      (data) => {
+        // console.log(data);
+        this.properties = data;
+      }
+    );
+    this.propService.emitProperties();
   }
 
   // Formulaire avec la methode reactive
@@ -40,7 +55,27 @@ export class AdminPropertiesComponent implements OnInit {
 
   // Formulaire avec la methode reactive
   onSubmitPropertiesForm() {
-    console.log(this.propertiesForm.value);
+    // console.log(this.propertiesForm.value);
+    const newProperty = this.propertiesForm.value;
+    this.propService.createProperty(newProperty);
+    $('#propertiesFormModal').modal('hide');
   }
 
+  resetForm() {
+    this.propertiesForm.reset();
+  }
+
+  onEditProperty() {
+
+  }
+
+  onDeleteProperty(index) {
+    $('#deletePropertyModal').modal('show');
+    this.indexToRemove = index;
+  }
+
+  onConfirmDeleteProperty() {
+    this.propService.deleteProperty(this.indexToRemove);
+    $('#deletePropertyModal').modal('hide');
+  }
 }
