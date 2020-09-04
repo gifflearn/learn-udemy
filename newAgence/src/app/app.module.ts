@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AdminPropertiesComponent } from './admin/admin-properties/admin-properties.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { SigninComponent } from './authentication/signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
     HeaderComponent,
     HomeComponent,
     AdminPropertiesComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,

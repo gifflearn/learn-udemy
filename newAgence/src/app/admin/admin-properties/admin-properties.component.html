@@ -88,12 +88,12 @@
           </div>
 
           <div class="custom-control custom-switch">
-            <!-- <input type="checkbox" class="custom-control-input" id="customSwitch1" formControlName="sold"> -->
+            <input type="checkbox" class="custom-control-input" id="customSwitch1" formControlName="sold">
             <!-- <input type="checkbox" class="custom-control-input" id="customSwitch1" name="sold" ngModel> -->
-            <!-- <label class="custom-control-label" for="customSwitch1">
+            <label class="custom-control-label" for="customSwitch1">
               <span class="text-success" *ngIf="propertiesForm.value.sold">Vendu</span>
               <span class="text-danger" *ngIf="!propertiesForm.value.sold">A vendre</span>
-            </label> -->
+            </label>
           </div>
 
 
@@ -121,7 +121,7 @@
         </button>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-dark" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
         <button type="button" class="btn btn-danger" (click)="onConfirmDeleteProperty()">Supprimer</button>
       </div>
     </div>

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
+import { Property } from '../interfaces/property';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -7,39 +9,39 @@ import { Observable, Subject } from 'rxjs';
 
 export class PropertiesService {
 
-  properties = [
-    {
-      title: 'Ma super maison',
-      category: 'Maison',
-      surface: '100',
-      rooms: '',
-      description: '',
-      price:  '',
-      sold: true
-    },
-    {
-      title: 'Bel appart',
-      category: 'Appartement',
-      surface: '',
-      rooms: '5',
-      description: '',
-      price: '',
-      sold: false
-    },
-    {
-      title: 'Belle villa',
-      category: 'Maison',
-      surface: '',
-      rooms: '',
-      description: '',
-      price: '',
-      sold: true
-    }
+  properties: Property[] = [
+    // {
+    //   title: 'Ma super maison',
+    //   category: 'Maison',
+    //   surface: '100',
+    //   rooms: '',
+    //   description: '',
+    //   price:  '',
+    //   sold: true
+    // },
+    // {
+    //   title: 'Bel appart',
+    //   category: 'Appartement',
+    //   surface: '',
+    //   rooms: '5',
+    //   description: '',
+    //   price: '',
+    //   sold: false
+    // },
+    // {
+    //   title: 'Belle villa',
+    //   category: 'Maison',
+    //   surface: '',
+    //   rooms: '',
+    //   description: '',
+    //   price: '',
+    //   sold: true
+    // }
   ];
 
   // 3)
   // Subject est un type d'Observable
-  propertiesSubject = new Subject<any[]>();
+  propertiesSubject = new Subject<Property[]>();
 
   constructor() {}
 
@@ -82,17 +84,45 @@ export class PropertiesService {
     this.propertiesSubject.next(this.properties);  // Si properties change alors l'info est envoyée
  }
 
+ saveProperties() {
+   firebase.database().ref('/properties').set(this.properties);
+ }
  getProperties() {
-
+   firebase.database().ref('/properties').on('value', (data) => {
+     this.properties = data.val() ? data.val() : [];
+     this.emitProperties();
+   });
  }
 
- createProperty(property) {
+ createProperty(property: Property) {
    this.properties.push(property);
+   this.saveProperties();
+   this.emitProperties();
  }
 
  deleteProperty(index) {
   this.properties.splice(index, 1);
+  this.saveProperties();
   this.emitProperties();
  }
+
+ updateProperty(property: Property, index) {
+  // Premiere façon de faire
+  // this.properties[index] = property;
+  // this.saveProperties();
+  // this.emitProperties();
+  //
+  // deuxieme facon de faire
+  firebase.database().ref('/properties/' + index).update(property).catch(
+    (error) => {
+      console.error(error);
+    }
+  );
+ }
+
+ uploadFile() {
+   
+ }
+
 
 }
