@@ -20,6 +20,9 @@ export class AdminPropertiesComponent implements OnInit {
   indexToUpdate;
   editMode = false;
 
+  photoUploading = false;
+  photoUploded = false;
+  photoUrl: string;
 
   constructor(private formBuilder: FormBuilder, private propService: PropertiesService) { }
 
@@ -71,7 +74,8 @@ export class AdminPropertiesComponent implements OnInit {
       surface: this.propertiesForm.get('surface').value,
       rooms: this.propertiesForm.get('rooms').value,
       price: this.propertiesForm.get('price').value,
-      sold: this.propertiesForm.get('sold').value
+      sold: this.propertiesForm.get('sold').value,
+      photo: this.photoUrl ? this.photoUrl : ''
     };
     if (this.editMode) {
       this.propService.updateProperty(newProperty, this.indexToUpdate);
@@ -85,6 +89,7 @@ export class AdminPropertiesComponent implements OnInit {
   resetForm() {
     this.propertiesForm.reset();
     this.editMode = false;
+    this.photoUrl = '';
   }
 
   onEditProperty(property: Property) {
@@ -96,6 +101,8 @@ export class AdminPropertiesComponent implements OnInit {
     this.propertiesForm.get('rooms').setValue(property.rooms);
     this.propertiesForm.get('price').setValue(property.price);
     this.propertiesForm.get('sold').setValue(property.sold);
+    this.photoUrl = property.photo ? property.photo : '';
+    // this.propertiesForm.get('photo').setValue(property.photo);
     const index = this.properties.findIndex(
       (propertyEL) => {
         if (propertyEL === property) {
@@ -107,12 +114,35 @@ export class AdminPropertiesComponent implements OnInit {
     this.indexToUpdate = index;
   }
 
+  onUploadFile(event) {
+    this.photoUploading = true;
+
+    this.propService.uploadFile(event.target.files[0]).then(
+      (url: string) => {
+        if (this.photoUrl && this.photoUrl !== '') {
+          this.propService.removeFile(this.photoUrl);
+        }
+        this.photoUrl = url;
+        this.photoUploading = false;
+        this.photoUploded = true;
+        // console.log(url);
+        setTimeout( () => {
+          this.photoUploded = false;
+        }, 5000);
+      }
+    );
+  }
+
   onDeleteProperty(index) {
     $('#deletePropertyModal').modal('show');
     this.indexToRemove = index;
   }
 
   onConfirmDeleteProperty() {
+    if (this.properties[this.indexToRemove].photo && this.properties[this.indexToRemove].photo !== '') {
+      this.propService.removeFile(this.properties[this.indexToRemove].photo);
+    }
+
     this.propService.deleteProperty(this.indexToRemove);
     $('#deletePropertyModal').modal('hide');
   }

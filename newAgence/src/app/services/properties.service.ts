@@ -120,9 +120,45 @@ export class PropertiesService {
   );
  }
 
- uploadFile() {
-   
+ uploadFile(file: File) {
+    return new Promise (
+      (resolve, reject) => {
+        const uniqueId = Date.now().toString();
+        const filename = uniqueId + file.name;
+        const upload = firebase.storage().ref().child('images/properties/' + filename).put(file);
+        upload.on(firebase.storage.TaskEvent.STATE_CHANGED,
+          () => {
+            console.log('Chargement ...');
+          },
+          (error) => {
+            console.log(error);
+            reject(error);
+          },
+          () => {
+           upload.snapshot.ref.getDownloadURL().then(
+             (downLoadUrl) => {
+               resolve(downLoadUrl);
+             }
+           );
+          }
+          );
+      }
+    );
  }
 
+ removeFile(fileLink: string) {
+    if (fileLink) {
+      const storageRef = firebase.storage().refFromURL(fileLink);
+      storageRef.delete().then(
+        () => {
+          console.log('file deleted');
+          }
+      ).catch(
+        (error) => {
+          console.error(error);
+        }
+      );
+    }
+  }
 
 }
