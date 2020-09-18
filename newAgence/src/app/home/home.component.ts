@@ -56,6 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.properties = data;
       }
     );
+    this.propServ.getProperties();
     this.propServ.emitProperties();
   }
 
@@ -71,4 +72,5 @@ export class HomeComponent implements OnInit, OnDestroy {
       return 'green';
     }
   }
+
 }
