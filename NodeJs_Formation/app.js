@@ -34,27 +34,28 @@ app.get('/api/v1/members/:id',(req,res) => {
     }
 })
 
-app.put('api/v1/members/:id',(req,res) => {
+app.put('/api/v1/members/:id', (req,res) => {
 
     let index = getIndex(req.params.id)
+    
 
     if (typeof(index) == 'string') {
         res.json(error(index))
     } else {
         
-        let sameName = false;
+        let same = false;
         for(let i =0;i < members.length;i++) {
             if (members[i].name == req.body.name && req.params.id != members[i].id) {      
-                sameName = true
+                same = true
                 break
             }
         }
 
-        if (sameName) {
+        if (same) {
             res.json(error('Name already in use'))
         } else {
             members[index].name=req.body.name
-            res.json(success(members))
+            res.json(success(true))
         }
 
         res.json(success(members[index])) 
@@ -62,6 +63,21 @@ app.put('api/v1/members/:id',(req,res) => {
 
 
 })
+
+app.delete('/api/v1/members/:id',(req,res) => {
+
+    let index = getIndex(req.params.id)
+    
+
+    if (typeof(index) == 'string') {
+        res.json(error(index))
+    } else {
+        members.splice(index,1)
+        res.json(success(members)) 
+    }
+
+})
+
 
 app.get('/api/v1/members',(req,res) => {
     if(req.query.max != undefined && req.query.max > 0) {
@@ -92,7 +108,7 @@ app.post('/api/v1/members',(req,res) => {
             res.json(error('Name already in use'))
         } else {
             let member = {
-                id:members.length+1,
+                id:createId(),
                 name:req.body.name
             }
             members.push(member)
@@ -114,4 +130,9 @@ function getIndex(id) {
         }
     }
     return 'Wrong id'
+}
+
+function createId() {
+
+return members[members.length-1].id +1 
 }
