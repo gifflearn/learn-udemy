@@ -2,135 +2,186 @@ const express=require('express')
 const bodyParser=require('body-parser')
 const morgan=require('morgan')
 const {success,error} = require('functions')
-const app = express()
+const mysql = require('mysql')
+
 const config = require('./config')
 
-app.use(morgan('dev'))
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+const db = mysql.createConnection({
+    host     : 'localhost',
+    database : 'nodejs',
+    user     : 'root',
+    password : ''
+  });
 
-const members = [
-    {
-        id:1,
-        name:'John'
-    },
-    {
-        id:2,
-        name:'Julie'
-    },
-    {
-        id:3,
-        name:'Jack'
-    }
-]
+  db.connect(function(err) {
+    if (err) {
+        console.error('error connecting: ' + err.message);
+        return;
+    } else {
+        console.log('connected as id ' + db.threadId);
 
-let MembersRouter = express.Router()
-MembersRouter.route('/:id')
+        const app = express()
+        app.use(morgan('dev'))
+        app.use(bodyParser.json());
+        app.use(bodyParser.urlencoded({extended: true}));
 
-    // get un membre avec son id
-    .get((req,res) => {
+        let MembersRouter = express.Router()
+        MembersRouter.route('/:id')
 
-        let index = getIndex(req.params.id)
+            // get un membre avec son id
+            .get((req,res) => {
 
-        if (typeof(index) == 'string') {
-            res.json(error(index))
-        } else {
-            res.json(success(members[index])) 
-        }
-    })
+                db.query('SELECT * FROM members WHERE id = ?',[req.params.id], (err,results) => {
+                    if (err) {
+                        res.json(error(err.message))
+                    } else {
+                        if (results[0] != undefined) {
+                            res.json(success(results))
+                        } else {
+                            res.json(error('Undefined Id'))
+                        }
+                       
+                    }
+                })
+            })
 
-    // update un membre avec son id
-    .put((req,res) => {
+            // update un membre avec son id
+            .put((req,res) => {
 
-        let index = getIndex(req.params.id)
-        
-        if (typeof(index) == 'string') {
-            res.json(error(index))
-        } else {
-            
-            let same = false;
-            for(let i =0;i < members.length;i++) {
-                if (members[i].name == req.body.name && req.params.id != members[i].id) {      
-                    same = true
-                    break
-                }
-            }
-
-            if (same) {
-                res.json(error('Name already in use'))
-            } else {
-                members[index].name=req.body.name
-                res.json(success(true))
-            }
-
-        }
-
-
-    })
-
-    // supprimer un membre avec son id
-    .delete((req,res) => {
-
-        let index = getIndex(req.params.id)
-        
-
-        if (typeof(index) == 'string') {
-            res.json(error(index))
-        } else {
-            members.splice(index,1)
-            res.json(success(members)) 
-        }
-
-    })
-
-MembersRouter.route('/')
-
-    // get tous les membres
-    .get((req,res) => {
-        if(req.query.max != undefined && req.query.max > 0) {
-            res.json(success(members.slice(0,req.query.max)))
-        } else if(req.query.max != undefined) {
-            res.json(error('Wrong Max value'))
-        } else {
-            res.json(success(members))
-        }
-
-    })
-
-    // Ajouetr un membre
-    .post((req,res) => {
-        //res.send(req.body)
-        if (req.body.name){
-            
-            let sameName = false;
-
-            for(let i =0;i < members.length;i++) {
-                if (members[i].name == req.body.name) {
+                let index = getIndex(req.params.id)
                 
-                    sameName = true
-                    break
+                if (typeof(index) == 'string') {
+                    res.json(error(index))
+                } else {
+                    
+                    let same = false;
+                    for(let i =0;i < members.length;i++) {
+                        if (members[i].name == req.body.name && req.params.id != members[i].id) {      
+                            same = true
+                            break
+                        }
+                    }
+
+                    if (same) {
+                        res.json(error('Name already in use'))
+                    } else {
+                        members[index].name=req.body.name
+                        res.json(success(true))
+                    }
+
                 }
-            }
-            
-            if (sameName) {
-                res.json(error('Name already in use'))
-            } else {
-                let member = {
-                    id:createId(),
-                    name:req.body.name
+
+
+            })
+
+            // supprimer un membre avec son id
+            .delete((req,res) => {
+
+                let index = getIndex(req.params.id)
+                
+
+                if (typeof(index) == 'string') {
+                    res.json(error(index))
+                } else {
+                    members.splice(index,1)
+                    res.json(success(members)) 
                 }
-                members.push(member)
-                res.json(success(members))
-            }
+
+            })
+
+        MembersRouter.route('/')
+
+            // get tous les membres
+            .get((req,res) => {
+                if(req.query.max != undefined && req.query.max > 0) {
+                    
+                    db.query('SELECT * FROM members LIMIT 0, ?',[req.query.max], (err,results) => {
+                        if (err) {
+                            res.json(error(err.message))
+                        } else {
+                            res.json(success(results))
+                        }
+                    })
+
+                } else if(req.query.max != undefined) {
+                    res.json(error('Wrong Max value'))
+                } else {
+
+                    db.query('SELECT * FROM members', (err,results) => {
+                        if (err) {
+                            res.json(error(err.message))
+                        } else {
+                            res.json(success(results))
+                        }
+                    })
+                }
+
+            })
+
+            // Ajouter un membre
+            .post((req,res) => {
+                //res.send(req.body)
+                if (req.body.name){
+                    
+                   
+                   db.query('SELECT * FROM members WHERE name = ?',[req.body.name],(err,results) => {
+                       if (err) {
+                            res.json(error(err.message))
+                       } else {
+                            if (results[0] != undefined) {
+                                res.json(error('Name already in use'))
+                            } else {
+
+                                db.query('INSERT INTO members(name) VALUES(?)',[req.body.name],(err,results) => {
+                                    if (err) {
+                                        res.json(error(err.message))
+                                   } else {
+
+                                   }
+                                })
+
+                            }
+                       }
+
+                   })
+                   
+                   
+                   
+                    let sameName = false;
+
+                    for(let i =0;i < members.length;i++) {
+                        if (members[i].name == req.body.name) {
+                        
+                            sameName = true
+                            break
+                        }
+                    }
+                    
+                    if (sameName) {
+                        res.json(error('Name already in use'))
+                    } else {
+                        let member = {
+                            id:createId(),
+                            name:req.body.name
+                        }
+                        members.push(member)
+                        res.json(success(members))
+                    }
 
 
-        } else { 
-            res.json(error('No name value'))
-        }
-    })
+                } else { 
+                    res.json(error('No name value'))
+                }
+            })
 
-app.use(config.rootAPI+'members',MembersRouter)
-app.listen(config.port,() => { console.log('Started on port '+config.port) })
+        app.use(config.rootAPI+'members',MembersRouter)
+        app.listen(config.port,() => { console.log('Started on port '+config.port) })
+
+    }
+    
+  });
+
+
 
 function getIndex(id) {
     for( let i =0; i< members.length; i++) {

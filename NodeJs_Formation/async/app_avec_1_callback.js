@@ -1,12 +1,15 @@
 
 console.log('Début')
+
+// appel de lacontion principale
 getMember((member) => {
-   console.log(member) 
+   console.log(member) // appel du callback
 })
 console.log('Fin')
 
-function getMember(func_call_back) {
+// Fonction de callback avec un timeout
+function getMember(func_callback) {
     setTimeout(() => {
-        func_call_back('Member 1')
+        func_callback('Member 1')
     }, 1500)
 }
