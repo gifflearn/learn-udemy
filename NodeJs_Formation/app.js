@@ -36,7 +36,7 @@ const db = mysql.createConnection({
                         res.json(error(err.message))
                     } else {
                         if (results[0] != undefined) {
-                            res.json(success(results))
+                            res.json(success(results[0]))
                         } else {
                             res.json(error('Undefined Id'))
                         }
@@ -48,44 +48,71 @@ const db = mysql.createConnection({
             // update un membre avec son id
             .put((req,res) => {
 
-                let index = getIndex(req.params.id)
-                
-                if (typeof(index) == 'string') {
-                    res.json(error(index))
-                } else {
-                    
-                    let same = false;
-                    for(let i =0;i < members.length;i++) {
-                        if (members[i].name == req.body.name && req.params.id != members[i].id) {      
-                            same = true
-                            break
+                if (req.body.name) {
+
+                    db.query('SELECT * FROM members WHERE id = ?',[req.params.id], (err,results) => {
+                        if (err) {
+                            res.json(error(err.message))
+                        } else {
+                            if (results[0] != undefined) {
+                                db.query('SELECT * FROM members WHERE name = ? AND id != ?',[req.body.name,req.params.id],(err,results) => {
+                                    if (err) {
+                                         res.json(error(err.message))
+                                    } else {
+                                         if (results[0] != undefined) {
+                                            res.json(error('Name already in use'))
+                                         } else {
+                                            // update
+                                            db.query('UPDATE members set name = ? WHERE id = ?',[req.body.name,req.params.id],(err,results) => {
+                                                if (err) {
+                                                    res.json(error(err.message))
+                                               } else {
+                                                   res.json(success(true))
+                                               }
+                                            })
+                                         }
+                                    }
+                                })
+
+                            } else {
+                                res.json(error('Undefined Id'))
+                            }
+                           
                         }
-                    }
+                    })
 
-                    if (same) {
-                        res.json(error('Name already in use'))
-                    } else {
-                        members[index].name=req.body.name
-                        res.json(success(true))
-                    }
 
+
+                } else {
+                    res.json(error('Noname value'))
                 }
-
 
             })
 
             // supprimer un membre avec son id
             .delete((req,res) => {
 
-                let index = getIndex(req.params.id)
                 
+                db.query('SELECT * FROM members WHERE id = ?',[req.params.id], (err,results) => {
+                    if (err) {
+                        res.json(error(err.message))
+                    } else {
+                        if (results[0] != undefined) {
+                            // delete
+                            db.query('DELETE FROM members WHERE id = ?',[req.params.id],(err,results) => {
+                                if (err) {
+                                    res.json(error(err.message))
+                               } else {
+                                   res.json(success(true))
+                               }
+                            })
 
-                if (typeof(index) == 'string') {
-                    res.json(error(index))
-                } else {
-                    members.splice(index,1)
-                    res.json(success(members)) 
-                }
+                        } else {
+                            res.json(error('Undefined Id'))
+                        }
+                       
+                    }
+                })
 
             })
 
@@ -136,7 +163,16 @@ const db = mysql.createConnection({
                                     if (err) {
                                         res.json(error(err.message))
                                    } else {
-
+                                        db.query('SELECT * FROM members WHERE name = ?',[req.body.name],(err,results) => {
+                                            if (err) {
+                                                res.json(error(err.message))
+                                            } else {
+                                                res.json(success({
+                                                    id: results[0].id,
+                                                    name: results[0].name
+                                                }))
+                                            }
+                                        })
                                    }
                                 })
 
@@ -145,28 +181,6 @@ const db = mysql.createConnection({
 
                    })
                    
-                   
-                   
-                    let sameName = false;
-
-                    for(let i =0;i < members.length;i++) {
-                        if (members[i].name == req.body.name) {
-                        
-                            sameName = true
-                            break
-                        }
-                    }
-                    
-                    if (sameName) {
-                        res.json(error('Name already in use'))
-                    } else {
-                        let member = {
-                            id:createId(),
-                            name:req.body.name
-                        }
-                        members.push(member)
-                        res.json(success(members))
-                    }
 
 
                 } else { 
