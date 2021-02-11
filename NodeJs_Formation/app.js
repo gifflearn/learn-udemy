@@ -1,7 +1,7 @@
 const express=require('express')
 const bodyParser=require('body-parser')
 const morgan=require('morgan')('dev') // module permettant de visualiser les requete http
-const {success,error} = require('./assets/functions')
+const {success,error, checkAndChange} = require('./assets/functions')
 const mysql = require('promise-mysql')
 
 const config = require('./assets/config')
@@ -29,20 +29,11 @@ mysql.createConnection({
     MembersRouter.route('/:id')
 
         // get un membre avec son id
-        .get((req,res) => {
+        .get(async (req,res) => {
+            
+            let member = await Members.getByID(req.params.id)
+            res.json(checkAndChange(member))
 
-            db.query('SELECT * FROM members WHERE id = ?',[req.params.id], (err,results) => {
-                if (err) {
-                    res.json(error(err.message))
-                } else {
-                    if (results[0] != undefined) {
-                        res.json(success(results[0]))
-                    } else {
-                        res.json(error('Undefined Id'))
-                    }
-                   
-                }
-            })
         })
 
         // update un membre avec son id
