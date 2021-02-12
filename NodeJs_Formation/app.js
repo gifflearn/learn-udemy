@@ -29,11 +29,9 @@ mysql.createConnection({
     MembersRouter.route('/:id')
 
         // get un membre avec son id
-        .get(async (req,res) => {
-            
+        .get(async (req,res) => {           
             let member = await Members.getByID(req.params.id)
             res.json(checkAndChange(member))
-
         })
 
         // update un membre avec son id
@@ -110,73 +108,16 @@ mysql.createConnection({
     MembersRouter.route('/')
 
         // get tous les membres
-        .get((req,res) => {
-            if(req.query.max != undefined && req.query.max > 0) {
-                
-                db.query('SELECT * FROM members LIMIT 0, ?',[req.query.max], (err,results) => {
-                    if (err) {
-                        res.json(error(err.message))
-                    } else {
-                        res.json(success(results))
-                    }
-                })
-
-            } else if(req.query.max != undefined) {
-                res.json(error('Wrong Max value'))
-            } else {
-
-                db.query('SELECT * FROM members', (err,results) => {
-                    if (err) {
-                        res.json(error(err.message))
-                    } else {
-                        res.json(success(results))
-                    }
-                })
-            }
-
+        .get(async (req,res) => {
+            let allMembers = await Members.getAll(req.query.max)
+            res.json(checkAndChange(allMembers))
         })
 
         // Ajouter un membre
-        .post((req,res) => {
+        .post(async (req,res) => {
             //res.send(req.body)
-            if (req.body.name){
-                
-               
-               db.query('SELECT * FROM members WHERE name = ?',[req.body.name],(err,results) => {
-                   if (err) {
-                        res.json(error(err.message))
-                   } else {
-                        if (results[0] != undefined) {
-                            res.json(error('Name already in use'))
-                        } else {
-
-                            db.query('INSERT INTO members(name) VALUES(?)',[req.body.name],(err,results) => {
-                                if (err) {
-                                    res.json(error(err.message))
-                               } else {
-                                    db.query('SELECT * FROM members WHERE name = ?',[req.body.name],(err,results) => {
-                                        if (err) {
-                                            res.json(error(err.message))
-                                        } else {
-                                            res.json(success({
-                                                id: results[0].id,
-                                                name: results[0].name
-                                            }))
-                                        }
-                                    })
-                               }
-                            })
-
-                        }
-                   }
-
-               })
-               
-
-
-            } else { 
-                res.json(error('No name value'))
-            }
+            let addMember = await Members.add(req.body.name)
+            res.json(checkAndChange(addMember))
         })
 
     app.use(config.rootAPI+'members',MembersRouter)
