@@ -1,10 +1,14 @@
 const express=require('express')
+// const expressOasGenerator = require('express-oas-generator'); // utiliser pour generer swagger.json
+const swaggerUi = require('swagger-ui-express')
 const bodyParser=require('body-parser')
 const morgan=require('morgan')('dev') // module permettant de visualiser les requete http
-const {success,error, checkAndChange} = require('./assets/functions')
 const mysql = require('promise-mysql')
 
+const {success,error, checkAndChange} = require('./assets/functions')
+
 const config = require('./assets/config')
+const swaggerDocument = require('./assets/swagger.json')
 
 mysql.createConnection({
     host     : config.db.host,
@@ -16,6 +20,7 @@ mysql.createConnection({
     console.log('connected as id ' + db.threadId);
 
     const app = express()
+    // expressOasGenerator.init(app, {}); // utiliser pour generer swagger.json
 
     let MembersRouter = express.Router()
     let Members = require('./assets/classes/members-class')(db, config)
@@ -24,6 +29,7 @@ mysql.createConnection({
     app.use(morgan)
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: true}));
+    app.use(config.rootAPI+'api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
     MembersRouter.route('/:id')
@@ -35,74 +41,15 @@ mysql.createConnection({
         })
 
         // update un membre avec son id
-        .put((req,res) => {
-
-            if (req.body.name) {
-
-                db.query('SELECT * FROM members WHERE id = ?',[req.params.id], (err,results) => {
-                    if (err) {
-                        res.json(error(err.message))
-                    } else {
-                        if (results[0] != undefined) {
-                            db.query('SELECT * FROM members WHERE name = ? AND id != ?',[req.body.name,req.params.id],(err,results) => {
-                                if (err) {
-                                     res.json(error(err.message))
-                                } else {
-                                     if (results[0] != undefined) {
-                                        res.json(error('Name already in use'))
-                                     } else {
-                                        // update
-                                        db.query('UPDATE members set name = ? WHERE id = ?',[req.body.name,req.params.id],(err,results) => {
-                                            if (err) {
-                                                res.json(error(err.message))
-                                           } else {
-                                               res.json(success(true))
-                                           }
-                                        })
-                                     }
-                                }
-                            })
-
-                        } else {
-                            res.json(error('Undefined Id'))
-                        }
-                       
-                    }
-                })
-
-
-
-            } else {
-                res.json(error('Noname value'))
-            }
-
+        .put(async (req,res) => {
+            let UpdMember = await Members.update(req.params.id, req.body.name)
+            res.json(checkAndChange(UpdMember))
         })
 
         // supprimer un membre avec son id
-        .delete((req,res) => {
-
-            
-            db.query('SELECT * FROM members WHERE id = ?',[req.params.id], (err,results) => {
-                if (err) {
-                    res.json(error(err.message))
-                } else {
-                    if (results[0] != undefined) {
-                        // delete
-                        db.query('DELETE FROM members WHERE id = ?',[req.params.id],(err,results) => {
-                            if (err) {
-                                res.json(error(err.message))
-                           } else {
-                               res.json(success(true))
-                           }
-                        })
-
-                    } else {
-                        res.json(error('Undefined Id'))
-                    }
-                   
-                }
-            })
-
+        .delete(async (req,res) => {
+            let delMember = await Members.delete(req.params.id)
+            res.json(checkAndChange(delMember))
         })
 
     MembersRouter.route('/')
@@ -125,23 +72,23 @@ mysql.createConnection({
 
 
 
-}).catch(() => {
+}).catch((err) => {
     console.error('error connecting: ' + err.message);
 })
 
 
 
 
-function getIndex(id) {
-    for( let i =0; i< members.length; i++) {
-        if(members[i].id == id) {
-            return i
-        }
-    }
-    return 'Wrong id'
-}
+// function getIndex(id) {
+//     for( let i =0; i< members.length; i++) {
+//         if(members[i].id == id) {
+//             return i
+//         }
+//     }
+//     return 'Wrong id'
+// }
 
-function createId() {
+// function createId() {
 
-return members[members.length-1].id +1 
-}
+// return members[members.length-1].id +1 
+// }
