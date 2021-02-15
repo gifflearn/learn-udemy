@@ -75,20 +75,3 @@ mysql.createConnection({
 }).catch((err) => {
     console.error('error connecting: ' + err.message);
 })
-
-
-
-
-// function getIndex(id) {
-//     for( let i =0; i< members.length; i++) {
-//         if(members[i].id == id) {
-//             return i
-//         }
-//     }
-//     return 'Wrong id'
-// }
-
-// function createId() {
-
-// return members[members.length-1].id +1 
-// }
