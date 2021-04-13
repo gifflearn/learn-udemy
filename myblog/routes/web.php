@@ -19,11 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/test', function () {
-//     return view('test');
-// });
+Route::get('/test', function () {
+    return view('test');
+})->middleware('guest');
 
-Route::get('/test', [MainController::class,'index']);
+//Route::get('/test', [MainController::class,'index']);
 Route::get('/unique', UniqueActionController::class);
 
 Route::resource('articles',ArticleController::class);

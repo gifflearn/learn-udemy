@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ArticleRequest;
 
 class ArticleController extends Controller
 {
@@ -24,6 +25,7 @@ class ArticleController extends Controller
     public function create()
     {
         //
+        return view('create');
     }
 
     /**
@@ -32,9 +34,32 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+    //public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
         //
+       //dd($request->all());
+        // dd($request->input('email'));
+        //
+        // if ($request->isMethod('GET')) {
+        //     die('GET');
+        // } else {
+        //     die('not GET');
+        // }
+        //
+        // if ($request->missing('email')) { // Attention si le champ est présent et vide => not missing
+        //     die('Not OK');
+        // } else {
+        //     die('OK');
+        // }
+        //
+        // $validatedData = $request->validate([
+        //     'name' => 'required|min:5|max:255',
+        //     'email' => 'required|min:5|max:255|email'
+        // ]);
+        $validated = $request->validated();
+        // les parametres sont validés
     }
 
     /**
