@@ -15,18 +15,26 @@ use App\Http\Controllers\UniqueActionController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('base');
+// });
 
-Route::get('/test', function () {
-    return view('test');
-})->middleware('guest');
+// Route::get('/test', function () {
+//     return view('test');
+// })->middleware('custom.auth');
 
-//Route::get('/test', [MainController::class,'index']);
-Route::get('/unique', UniqueActionController::class);
+// Route::get('/test', function () {
+//     return view('test');
+// })->middleware('auth.basic');
 
-Route::resource('articles',ArticleController::class);
+
+Route::get('/', [MainController::class,'home']);
+Route::get('/articles', [MainController::class,'index'])->name('articles');
+Route::get('/articles/{slug}', [MainController::class,'show'])->name('article');
+
+//Route::get('/unique', UniqueActionController::class);
+
+//  Route::resource('articles',ArticleController::class);
 
 
 // Route::get('/test/{id}/{part}', function ($id,$part) {

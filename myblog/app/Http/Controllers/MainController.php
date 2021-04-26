@@ -2,12 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
     //
+    public function home() {
+        return view('home');
+    }
+
     public function index() {
-        return view('test');
+
+        //$articles = Article::All();
+        $articles = Article::paginate(4);
+        // dd($articles);
+        return view('articles',[
+            'articles'=>$articles
+        ]);
+    }
+
+    public function show($slug) {
+
+        $article = Article::where('slug',$slug)->firstOrFail();
+        // dd($article);
+        return view('article',[
+            'article'=>$article
+        ]);
+        
     }
 }

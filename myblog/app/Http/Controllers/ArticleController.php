@@ -38,6 +38,7 @@ class ArticleController extends Controller
     //public function store(Request $request)
     public function store(ArticleRequest $request)
     {
+        $validated = $request->validated();
         //
        //dd($request->all());
         // dd($request->input('email'));
@@ -58,7 +59,7 @@ class ArticleController extends Controller
         //     'name' => 'required|min:5|max:255',
         //     'email' => 'required|min:5|max:255|email'
         // ]);
-        $validated = $request->validated();
+
         // les parametres sont validés
     }
 
