@@ -27,8 +27,10 @@ use App\Http\Controllers\UniqueActionController;
 //     return view('test');
 // })->middleware('auth.basic');
 
+Auth::routes();
 
-Route::get('/', [MainController::class,'home']);
+Route::get('/', [MainController::class,'home'])->name('home');
+// Route::get('/home',[App\Http\Controllers\HomeController::class,'index'])->name('home');
 Route::get('/articles', [MainController::class,'index'])->name('articles');
 Route::get('/articles/{slug}', [MainController::class,'show'])->name('article');
 
@@ -81,6 +83,10 @@ Route::get('/articles/{slug}', [MainController::class,'show'])->name('article');
 //         ]);
 //     });
 // });
+
+
+
+
 
 
 

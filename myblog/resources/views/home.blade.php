@@ -1,6 +1,7 @@
 @extends('base')
 
 @section('content')
+{{-- @dump(Auth::user()) --}}
 <div class="jumbotron">
     <h1 class="display-3">Votre espace partenaire</h1>
     <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
