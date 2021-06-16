@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ArticleController;
@@ -27,12 +28,16 @@ use App\Http\Controllers\UniqueActionController;
 //     return view('test');
 // })->middleware('auth.basic');
 
-Auth::routes();
+
 
 Route::get('/', [MainController::class,'home'])->name('home');
 // Route::get('/home',[App\Http\Controllers\HomeController::class,'index'])->name('home');
 Route::get('/articles', [MainController::class,'index'])->name('articles');
 Route::get('/articles/{slug}', [MainController::class,'show'])->name('article');
+
+Auth::routes();
+
+Route::get('/admin/articles',[ArticleController::class, 'index'])->middleware('admin');
 
 //Route::get('/unique', UniqueActionController::class);
 
