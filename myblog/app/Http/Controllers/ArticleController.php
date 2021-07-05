@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
+use App\Models\Article;
+use Illuminate\Support\Facades\Redirect;
 
 class ArticleController extends Controller
 {
@@ -15,7 +17,11 @@ class ArticleController extends Controller
     public function index()
     {
         //
-        return view('article.index');
+        //$articles = Article::all();
+        $articles = Article::paginate(7);
+        return view('article.index',[
+            'articles' => $articles
+        ]);
     }
 
     /**
@@ -26,13 +32,13 @@ class ArticleController extends Controller
     public function create()
     {
         //
-        return view('create');
+        return view('article.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\ArticleRequest  $request
      * @return \Illuminate\Http\Response
      */
 
@@ -40,6 +46,13 @@ class ArticleController extends Controller
     public function store(ArticleRequest $request)
     {
         $validated = $request->validated();
+        Article::create([
+            'title' => $request->input('title'),
+            'subtitle' => $request->input('subtitle'),
+            'content' => $request->input('content')
+        ]);
+        return redirect()->route('articles.index')->with('success',"L'article a bien été sauvegardé !");
+        //$validated = $request->validated();
         //
        //dd($request->all());
         // dd($request->input('email'));
@@ -81,31 +94,43 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Article $article)
     {
         //
+        return view('article.edit',[
+            'article'=>$article
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\ArticleRequest  $request
+     * @param  Article $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ArticleRequest $request, Article $article)
     {
         //
+        // dd($article);
+        // $validated = $request->validated();
+        // Article::create([
+        //     'title' => $request->input('title'),
+        //     'subtitle' => $request->input('subtitle'),
+        //     'content' => $request->input('content')
+        // ]);
+        $article->title = $request->input('title');
+        $article->subtitle = $request->input('subtitle');
+        $article->content = $request->input('content');
+        $article->save();
+
+        return redirect()->route('articles.index')->with('success',"L'article a bien été modifié !");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function delete(Article $article) {
+
+        //dd($article);
+        $article->delete();
+        return redirect()->route('articles.index')->with('success',"L'article a bien été supprimé !");
     }
 }

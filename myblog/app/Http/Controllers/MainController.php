@@ -22,13 +22,15 @@ class MainController extends Controller
         ]);
     }
 
-    public function show($slug) {
+    //public function show($slug) {
 
-        $article = Article::where('slug',$slug)->firstOrFail();
-        // dd($article);
-        return view('article',[
-            'article'=>$article
+    public function show(Article $article) {
+    //$article = Article::where('slug',$slug)->firstOrFail();
+    // dd($article);
+    return view('article',[
+        'article'=>$article
         ]);
-        
+
     }
+
 }

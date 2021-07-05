@@ -23,10 +23,16 @@ class ArticleRequest extends FormRequest
      */
     public function rules()
     {
+        // D'où a vient ? Plus utilisé ?
+        // return [
+        //     //
+        //     'name' => 'required|min:5|max:255',
+        //     'email' => 'required|min:5|max:255|email'
+        // ];
         return [
-            //
-            'name' => 'required|min:5|max:255',
-            'email' => 'required|min:5|max:255|email'
+            'title' => 'required|min:6|max:150',
+            'subtitle' => 'required|min:6|max:200',
+            'content' => 'required'
         ];
     }
 
@@ -38,10 +44,13 @@ class ArticleRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Le champ name est requis',
-            'email.required' => 'Le champ mail est requis',
-            'email.email' => 'Le champ mail n\'est pas valide',
-            'email.min' => 'Le champ mail doit faire 5 caractères'
+            'title.required' => 'Le champ titre est requis',
+            'title.min' => 'Le champ titre doit faire au moins 6 caractères',
+            'title.max' => 'Le champ titre doit faire au plus 150 caractères',
+            'subtitle.required' => 'Le champ sous-titre est requis',
+            'subtitle.min' => 'Le champ sous-titre doit faire au moins 6 caractères',
+            'subtitle.max' => 'Le champ sous-titre doit faire au plus 150 caractères',
+            'content.required' => 'Le champ contenu est requis'
         ];
     }
 }

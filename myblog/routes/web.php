@@ -33,11 +33,17 @@ use App\Http\Controllers\UniqueActionController;
 Route::get('/', [MainController::class,'home'])->name('home');
 // Route::get('/home',[App\Http\Controllers\HomeController::class,'index'])->name('home');
 Route::get('/articles', [MainController::class,'index'])->name('articles');
-Route::get('/articles/{slug}', [MainController::class,'show'])->name('article');
+//Route::get('/articles/{slug}', [MainController::class,'show'])->name('article');
+Route::get('/articles/{article:slug}', [MainController::class,'show'])->name('article');
 
 Auth::routes();
 
-Route::get('/admin/articles',[ArticleController::class, 'index'])->middleware('admin');
+Route::get('/admin/articles',[ArticleController::class, 'index'])->middleware('admin')->name('articles.index');
+Route::get('/admin/articles/create',[ArticleController::class, 'create'])->middleware('admin')->name('articles.create');
+Route::post('/admin/articles/store',[ArticleController::class, 'store'])->middleware('admin')->name('articles.store');
+Route::delete('/admin/articles/{article:id}/delete',[ArticleController::class, 'delete'])->middleware('admin')->name('articles.delete');
+Route::get('/admin/articles/{article}/edit',[ArticleController::class, 'edit'])->middleware('admin')->name('articles.edit');
+Route::put('/admin/articles/{article}/update',[ArticleController::class, 'update'])->middleware('admin')->name('articles.update');
 
 //Route::get('/unique', UniqueActionController::class);
 
