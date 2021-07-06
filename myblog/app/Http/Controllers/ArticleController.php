@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
+use Illuminate\Http\Request;
+use App\Manager\ArticleManager;
+use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Redirect;
 
 class ArticleController extends Controller
 {
+    private $articleManager;
+    public function __construct(ArticleManager $articleManager) {
+        $this->articleManager = $articleManager;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -46,11 +53,16 @@ class ArticleController extends Controller
     public function store(ArticleRequest $request)
     {
         $validated = $request->validated();
-        Article::create([
-            'title' => $request->input('title'),
-            'subtitle' => $request->input('subtitle'),
-            'content' => $request->input('content')
-        ]);
+        // insertion "classique"
+            // Article::create([
+            //     'title' => $request->input('title'),
+            //     'subtitle' => $request->input('subtitle'),
+            //     'content' => $request->input('content')
+            // ]);
+
+        // Utilisation de articleManager
+        $this->articleManager->build(new Article(), $request);
+
         return redirect()->route('articles.index')->with('success',"L'article a bien été sauvegardé !");
         //$validated = $request->validated();
         //
@@ -119,15 +131,23 @@ class ArticleController extends Controller
         //     'subtitle' => $request->input('subtitle'),
         //     'content' => $request->input('content')
         // ]);
-        $article->title = $request->input('title');
-        $article->subtitle = $request->input('subtitle');
-        $article->content = $request->input('content');
-        $article->save();
+        //
+        // Sans manager :
+            // $article->title = $request->input('title');
+            // $article->subtitle = $request->input('subtitle');
+            // $article->content = $request->input('content');
+            // $article->save();
+        // Utilisation de article Manager
+        // dd($this->articleManager); // le namespace
+        // dd(get_class($this->articleManager));  // la class
+        //dd(get_class_methods($this->articleManager)); // les methodes de la class
+
+        $this->articleManager->build($article,$request);
 
         return redirect()->route('articles.index')->with('success',"L'article a bien été modifié !");
     }
 
-    public function delete(Article $article) {
+    public function destroy(Article $article) {
 
         //dd($article);
         $article->delete();
