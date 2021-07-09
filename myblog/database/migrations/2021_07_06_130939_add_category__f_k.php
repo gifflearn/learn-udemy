@@ -16,7 +16,7 @@ class AddCategoryFK extends Migration
         Schema::table('articles', function (Blueprint $table) {
             //
             // ajout cle FK category
-            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('category_id')->nullable(false);
             $table->foreign('category_id')->references('id')->on('categories');
             //
         });
