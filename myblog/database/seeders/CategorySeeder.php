@@ -16,13 +16,15 @@ class CategorySeeder extends Seeder
     public function run()
     {
         //
-        $categories=['Sport','Cinema','Actualité','Sciences'];
+        // $categories=['Sport','Cinema','Actualité','Sciences'];
 
-        for($i=0;$i < count($categories);$i++){
+        // for($i=0;$i < count($categories);$i++){
 
-            Category::create([
-                'label' => $categories[$i]
-                ]);
-        }
+        //     Category::create([
+        //         'label' => $categories[$i]
+        //         ]);
+        // }
+        // Utilisation des Factories :
+        \App\Models\Category::factory(5)->create();
     }
 }

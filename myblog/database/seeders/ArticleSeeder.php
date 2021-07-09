@@ -16,17 +16,26 @@ class ArticleSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Factory::create(); //     Faker\Factory
-        //dd($faker);
+        // $faker = Factory::create(); //     Faker\Factory
+        // //dd($faker);
 
-        for($i=0;$i < 26;$i++){
+        // for($i=0;$i < 26;$i++){
 
-            Article::create([
-                'title' => $faker->sentence($nbWords=6,$variableNbWords= true),
-                'subtitle' => $faker->sentence($nbWords=6,$variableNbWords= true),
-                'content' => $faker->text($maxNbChars = 600),
-                'category_id' => Category::inRandomOrder()->first()->id
-                ]);
-        }
+        //     Article::create([
+        //         'title' => $faker->sentence($nbWords=6,$variableNbWords= true),
+        //         'subtitle' => $faker->sentence($nbWords=6,$variableNbWords= true),
+        //         'content' => $faker->text($maxNbChars = 600),
+        //         'category_id' => Category::inRandomOrder()->first()->id
+        //         ]);
+        // }
+
+        // Utilisation des factories :
+        //
+        Category::get()->each(function($category) {
+            \App\Models\Article::factory(5)->create([
+                'category_id' => $category->id
+            ]);
+        });
+
     }
 }
