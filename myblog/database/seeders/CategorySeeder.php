@@ -25,6 +25,8 @@ class CategorySeeder extends Seeder
         //         ]);
         // }
         // Utilisation des Factories :
-        \App\Models\Category::factory(5)->create();
+        \App\Models\Category::factory(5)->create([
+            'icon' => 'address-book'
+        ]);
     }
 }

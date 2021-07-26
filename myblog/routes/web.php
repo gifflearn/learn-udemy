@@ -1,5 +1,6 @@
 <?php
 
+use TCG\Voyager\Facades\Voyager;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
@@ -38,18 +39,21 @@ Route::get('/articles/{article:slug}', [MainController::class,'show'])->name('ar
 
 Auth::routes();
 
-Route::prefix('admin')->middleware('admin')->group(function() {
-    // On peut remplacer toutes les route d'un meme controller par une route unique
-    Route::resource('articles', ArticleController::class)->except([
-        'show'
-    ]);
+// Route::prefix('admin')->middleware('admin')->group(function() {
+//     // On peut remplacer toutes les route d'un meme controller par une route unique
+//     Route::resource('articles', ArticleController::class)->except([
+//         'show'
+//     ]);
+
+    Route::group(['prefix' => 'admin'], function () {
+        Voyager::routes();
+    });
     // Route::get('/articles',[ArticleController::class, 'index'])->name('articles.index');
     // Route::get('/articles/create',[ArticleController::class, 'create'])->name('articles.create');
     // Route::post('/articles/store',[ArticleController::class, 'store'])->name('articles.store');
     // Route::delete('/articles/{article:id}/delete',[ArticleController::class, 'delete'])->name('articles.delete');
     // Route::get('/articles/{article}/edit',[ArticleController::class, 'edit'])->name('articles.edit');
     // Route::put('/articles/{article}/update',[ArticleController::class, 'update'])->name('articles.update');
-});
 
 
 //Route::get('/unique', UniqueActionController::class);
@@ -101,10 +105,3 @@ Route::prefix('admin')->middleware('admin')->group(function() {
 //         ]);
 //     });
 // });
-
-
-
-
-
-
-

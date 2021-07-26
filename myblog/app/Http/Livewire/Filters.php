@@ -17,15 +17,15 @@ class Filters extends Component
             return $val !== false;
         });
 
-        // return view('livewire.filters',[
-        //     'articles' =>(empty($this->activeFilters))
-        //                     ? Article::all()
-        //                     : Article::whereIn('category_id', array_keys($this->activeFilters))->get()
-        // ]);
         return view('livewire.filters',[
-            'articles' =>(empty($this->afsearch))
+            'articles' =>(empty($this->activeFilters))
                             ? Article::all()
-                            : Article::where('title','LIKE','%'.$this->afsearch.'%')->get()
+                            : Article::whereIn('category_id', array_keys($this->activeFilters))->get()
         ]);
+        // return view('livewire.filters',[
+        //     'articles' =>(empty($this->afsearch))
+        //                     ? Article::all()
+        //                     : Article::where('title','LIKE','%'.$this->afsearch.'%')->get()
+        // ]);
     }
 }

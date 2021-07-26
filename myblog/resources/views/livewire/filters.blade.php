@@ -21,10 +21,10 @@
             </div>
         </div>
         <div class="col-2 pt-3">
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <input type="text" size="15" name="afsearch" id="afsearch" placeholder="Search" wire:model="afsearch">
-            </div>
-            {{-- @foreach ($categories  as $category)
+            </div> --}}
+            @foreach ($categories  as $category)
                 <div class="form-group">
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="{{$category->id}}" wire:model="activeFilters.{{ $category->id}}"/>
@@ -34,7 +34,7 @@
                         </label>
                     </div>
                 </div>
-            @endforeach --}}
+            @endforeach
         </div>
     </div>
 </div>
