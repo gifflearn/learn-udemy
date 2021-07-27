@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AuthGithubController;
 use App\Http\Controllers\UniqueActionController;
 
 /*
@@ -29,7 +30,9 @@ use App\Http\Controllers\UniqueActionController;
 //     return view('test');
 // })->middleware('auth.basic');
 
-
+// Route::get('/github', function() {
+//     dd(env('GITHUB_CLIENT_ID'),env('GITHUB_CLIENT_SECRET'),env('GITHUB_REDIRECT'));
+// });
 
 Route::get('/', [MainController::class,'home'])->name('home');
 // Route::get('/home',[App\Http\Controllers\HomeController::class,'index'])->name('home');
@@ -38,6 +41,9 @@ Route::get('/articles', [MainController::class,'index'])->name('articles');
 Route::get('/articles/{article:slug}', [MainController::class,'show'])->name('article');
 
 Auth::routes();
+
+Route::get('/auth/github',[AuthGithubController::class,'auth'])->name('github.auth');
+Route::get('/auth/github/redirect',[AuthGithubController::class,'redirect'])->name('github.redirect');
 
 // Route::prefix('admin')->middleware('admin')->group(function() {
 //     // On peut remplacer toutes les route d'un meme controller par une route unique
